@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drop Here!!</title>
+    <style>
+        body {
+            display: flex;
+            background-color: rgb(131, 70, 166);
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .box {
+            width: 400px;
+            text-align: center;
+            border: 2px solid #333;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: #f4f4f4;
+        }
+        .note {
+            width: 400px;
+            text-align: center;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #ffdddd;
+            border-left: 6px solid #f44336; /* Red stripe */
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            word-wrap: break-word;   /* ensures long names wrap inside box */
+            margin: 5px 0;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Share Your File 👩‍💻</h2>
+        <form enctype="multipart/form-data" method="POST">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    <div class="box">
+        <h2>Files Available</h2>
+        <ul>
+            {% for file in files %}
+                <li><a href="/download/{{file.unique}}">{{file.original}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="note">
+        ⚠️ Note: Uploaded files will be automatically deleted after <b>1 minute</b> 
+        for security reasons. Please download your files promptly.
+    </div>
+</body>
+</html>
